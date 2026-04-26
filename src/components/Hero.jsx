@@ -25,7 +25,7 @@ export default function Hero() {
               <div className="avatar-ring-inner" />
             </div>
             <div className="avatar-circle">
-              <img src="/dragon.png" alt="龍由" />
+              <img src={`${import.meta.env.BASE_URL}dragon.png`} alt="龍由" />
             </div>
           </div>
         </div>
