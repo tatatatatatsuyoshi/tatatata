@@ -16,7 +16,7 @@ export default function Hero() {
           <p className="hero-sub" id="about">
             育休中パパエンジニア。<br />
             FPSとプログラムを愛するプログラマー。<br />
-            もうそろ生まれます！楽しみ
+            もうそろ生まれます！楽しみですね
           </p>
         </div>
         <div className="hero-visual">
