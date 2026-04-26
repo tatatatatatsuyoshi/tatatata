@@ -14,7 +14,7 @@ export default function Hero() {
             <Typewriter text="Tatsuyoshi" speed={90} />
           </h1>
           <p className="hero-sub" id="about">
-            育休中パパエンジニア。<br />
+            育休中パパ(予定)エンジニア。<br />
             FPSとプログラムを愛するプログラマー。<br />
             もうそろ生まれます！楽しみです！
           </p>
