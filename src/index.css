@@ -326,7 +326,7 @@ section {
 
 .status-icon { font-size: 3.5rem; flex-shrink: 0; }
 .status-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
-.status-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.8; max-width: 440px; }
+.status-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.8; max-width: 440px; word-break: keep-all;}
 
 /* Skills */
 .skills-grid { display: flex; flex-wrap: wrap; gap: 12px; }
