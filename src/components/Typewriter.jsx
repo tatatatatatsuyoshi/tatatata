@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function Typewriter({ text, speed = 80 }) {
+export default function Typewriter({ text, speed = 80, className = '' }) {
   const [displayed, setDisplayed] = useState('')
 
   useEffect(() => {
@@ -13,13 +13,13 @@ export default function Typewriter({ text, speed = 80 }) {
   }, [text, speed])
 
   return (
-    <span>
+    <span className={className}>
       {displayed}
       <span
         style={{
           opacity: displayed.length < text.length ? 1 : 0,
-          borderRight: '2px solid #0077ff',
-          marginLeft: '2px',
+          borderRight: '3px solid #22d3ee',
+          marginLeft: '3px',
         }}
       >
         &nbsp;

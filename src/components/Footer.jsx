@@ -1,14 +1,11 @@
 export default function Footer() {
   return (
-    <footer>
-      <span style={{ opacity: 0.4 }}>© 2026 </span>
-      <span
-        className="gradient-text"
-        style={{ fontFamily: "'Orbitron',sans-serif", fontSize: '0.8rem', fontWeight: 700 }}
-      >
+    <footer className="border-t border-white/[0.05] text-center py-9 px-6 text-site-muted text-xs tracking-widest">
+      <span>© 2026 </span>
+      <span className="font-orbitron font-bold text-sm bg-gradient-to-r from-site-blue to-site-deep bg-clip-text text-transparent">
         TATSUYOSHI
       </span>
-      <span style={{ opacity: 0.4 }}> — Built with React</span>
+      <span> — Built with React</span>
     </footer>
   )
 }
