@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 const skills = [
   'JavaScript', 'TypeScript', 'React', 'Node.js',
-  'Python', 'Git', 'CSS / Tailwind', 'REST API', 'Java',
+  'Python', 'Git', 'CSS / Tailwind', 'REST API', 'Java', 'DB2', 'KornShell',
 ]
 
 const pill = {
