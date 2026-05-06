@@ -32,21 +32,62 @@ async function fetchWeather(lat, lon) {
   }
 }
 
-export default function WeatherCard() {
-  const [data, setData]       = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError]     = useState(false)
+function msUntilNext15() {
+  const now = new Date()
+  const ms = (now.getMinutes() * 60 + now.getSeconds()) * 1000 + now.getMilliseconds()
+  return 15 * 60 * 1000 - (ms % (15 * 60 * 1000))
+}
 
-  useEffect(() => {
+function formatCountdown(secs) {
+  const m = Math.floor(secs / 60).toString().padStart(2, '0')
+  const s = (secs % 60).toString().padStart(2, '0')
+  return `${m}:${s}`
+}
+
+export default function WeatherCard() {
+  const [data, setData]         = useState(null)
+  const [loading, setLoading]   = useState(true)
+  const [error, setError]       = useState(false)
+  const [countdown, setCountdown] = useState(null)
+
+  function refresh() {
+    setLoading(true)
+    setError(false)
     Promise.all(CITIES.map(c => fetchWeather(c.lat, c.lon)))
       .then(results => { setData(results); setLoading(false) })
       .catch(() => { setError(true); setLoading(false) })
+  }
+
+  useEffect(() => {
+    refresh()
+
+    let timeoutId
+    function scheduleNext() {
+      const ms = msUntilNext15()
+      timeoutId = setTimeout(() => { refresh(); scheduleNext() }, ms)
+    }
+    scheduleNext()
+
+    return () => clearTimeout(timeoutId)
+  }, [])
+
+  useEffect(() => {
+    setCountdown(Math.ceil(msUntilNext15() / 1000))
+    const tickId = setInterval(() => setCountdown(Math.ceil(msUntilNext15() / 1000)), 1000)
+    return () => clearInterval(tickId)
   }, [])
 
   return (
     <section className="max-w-3xl mx-auto px-6 py-16">
       <div className="font-orbitron text-[10px] tracking-[4px] text-site-blue mb-3">// WEATHER</div>
-      <h2 className="text-2xl sm:text-3xl font-bold mb-10">リアルタイム気温</h2>
+      <div className="flex items-baseline justify-between mb-10">
+        <h2 className="text-2xl sm:text-3xl font-bold">リアルタイム気温</h2>
+        {countdown !== null && (
+          <div className="font-orbitron text-[10px] tracking-[2px] text-site-muted">
+            NEXT <span className="text-site-blue">{formatCountdown(countdown)}</span>
+          </div>
+        )}
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {CITIES.map((city, i) => (
           <motion.div
